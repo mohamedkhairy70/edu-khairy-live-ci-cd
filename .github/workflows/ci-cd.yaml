@@ -18,6 +18,14 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.0.x'
+      - name: start SQl Server
+        run: |
+          docker run -d -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Pass~w0r8' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
+      
+      - name: Sleep for 5 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '5s'
 
       - name: Restore depandencies 
         run: dotnet restore
@@ -26,6 +34,8 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Run automated test
+        env: 
+          ConnectionStrings__DefaultConnection: Server=localhost;Database=CustomerDB;User:sa;Password:Pass~w0r8
         run: dotnet test -c Release --no-build
 
       - name: Publish app
