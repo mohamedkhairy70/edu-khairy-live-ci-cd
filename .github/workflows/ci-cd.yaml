@@ -14,10 +14,10 @@ jobs:
       - name: setup-dotnet5
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.6.x'
+          dotnet-version: '5.0.x'
 
-      -name: Restore depandencies 
+      - name: Restore depandencies 
         run: dotnet restore
 
-      -name: لآuild app
+      - name: لآuild app
         run: dotnet build -c Release --no-restore
