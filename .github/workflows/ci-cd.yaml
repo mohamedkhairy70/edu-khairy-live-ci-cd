@@ -19,5 +19,5 @@ jobs:
       - name: Restore depandencies 
         run: dotnet restore
 
-      - name: لآuild app
+      - name: Build app
         run: dotnet build -c Release --no-restore
