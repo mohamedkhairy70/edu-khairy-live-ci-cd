@@ -35,7 +35,7 @@ jobs:
 
       - name: Run automated test
         env: 
-          ConnectionStrings__DefaultConnection: Server=localhost;Database=CustomerDB_Test;User:sa;Password:Pass~w0r8
+          ConnectionStrings__DefaultConnection: Server=localhost;Database=CustomerDB_Test;User=sa;Password=Pass~w0r8
         run: dotnet test -c Release --no-build
 
       - name: Publish app
